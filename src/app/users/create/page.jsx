@@ -72,7 +72,7 @@ export default function Page() {
     return (
         <>
             {/* Breadcumbs */}
-            <nav className="breadcumbs flex mb-8">
+            <nav className="breadcumbs flex mb-8 xl:px-0 px-5">
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li className="inline-flex items-center">
                         <Link href="/users?page=1" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">

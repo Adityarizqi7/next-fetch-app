@@ -27,8 +27,8 @@ export default async function Page({searchParams}) {
   return (
       <section className="users-list-component xl:px-0 px-5">
             {/* Breadcumbs */}
-            <nav className="flex flex-wrap justify-between gap-2 mb-8">
-              <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <nav className="flex flex-wrap justify-between gap-x-2 gap-y-5 mb-8">
+              <ol className="w-full inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                   <li className="inline-flex items-center">
                       <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
                           <svg className="w-3 h-3 me-2.5 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
