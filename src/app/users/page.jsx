@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import UserTable from "./components/UsersList";
+import UserList from "./components/UsersList";
 import Pagination from "./components/Pagination";
 import CreateButton from "../components/button/CreateButton";
 
@@ -52,7 +52,7 @@ export default async function Page({searchParams}) {
             </nav>
 
             {/* User Table */}
-            <UserTable dataUser={usersData?.data} />
+            <UserList dataUser={usersData?.data} />
 
             {/* Pagination */}
             <Pagination searchParams={searchParams} total_pages={usersData?.total_pages} containerClassName='my-[40px]' />

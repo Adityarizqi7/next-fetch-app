@@ -12,7 +12,7 @@ async function getData(id) {
 
 export const revalidate = 10
 
-export default async function UserDetail({ params }) {
+export default async function Page({ params }) {
 
     const { data } = await getData(params.id)
 

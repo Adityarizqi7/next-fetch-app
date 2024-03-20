@@ -6,7 +6,7 @@ import { toast, ToastContainer, Slide } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function page() {
+export default function Page() {
 
     const [values, setValues] = useState({
         name: '',
