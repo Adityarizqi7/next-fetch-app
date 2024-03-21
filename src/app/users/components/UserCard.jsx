@@ -1,6 +1,8 @@
 "use client"
 
+import { Suspense } from "react";
 import { useRouter } from "next/navigation"
+import {Skeleton} from "@nextui-org/react";
 
 export default function UserCard({id, avatar, first_name,last_name, email}, key) {
     

@@ -1,4 +1,7 @@
 import { Inter } from "next/font/google";
+import {Providers} from "src/app/provider";
+import NextTopLoader from 'nextjs-toploader';
+
 import Navigation from "./components/header/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,15 +15,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body className={inter.className}>
-        <Navigation />
-        <main className="max-w-screen-xl mx-auto sm:mt-10 mt-8">
-          {children}
-        </main>
-        <footer className="max-w-screen-xl mx-auto text-center mt-10 py-8 border-t border-solid border-gray-300/80">
-        © { new Date().getFullYear() } Next JS Fetching. All Rights Reserved.
-        </footer>
-      </body>
+        <body className={inter.className}>
+          <NextTopLoader />
+          <Providers>
+            <Navigation />
+            <main className="max-w-screen-xl mx-auto sm:mt-10 mt-8">
+                {children}
+            </main>
+            <footer className="max-w-screen-xl mx-auto text-center mt-10 py-8 xl:px-0 px-5 border-t border-solid border-gray-300/80">
+            © { new Date().getFullYear() } Next JS Fetching. All Rights Reserved.
+            </footer>
+          </Providers>
+        </body>
     </html>
   );
 }
