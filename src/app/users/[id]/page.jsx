@@ -2,15 +2,17 @@ import Link from "next/link";
 
 async function getData(id) {
 
-    const res = await fetch(`https://reqres.in/api/users/${id}`)
+    const res = await fetch(`https://reqres.in/api/users/${id}`, {
+        next: {
+            revalidate: 10
+        }
+    })
 
     if (!res.ok) {
       throw new Error('Failed to fetch data User Detail')
     }
     return res.json()
 }
-
-export const revalidate = 10
 
 export default async function Page({ params }) {
 
@@ -39,7 +41,7 @@ export default async function Page({ params }) {
             </nav>
             
             {/* User Detail */}
-            <article className="box-user flex gap-4">
+            <article className="box-user flex 4xs:flex-col gap-4">
                 <img src={data?.avatar} alt={data?.first_name + ' ' + data?.last_name} className='rounded-[6px] w-[150px]' />
                 <div className="space-y-2">
                     <h1 className="text-[1.15rem] text-slate-900 font-semibold">{data?.first_name + ' ' + data?.last_name}</h1>
