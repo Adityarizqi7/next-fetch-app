@@ -25,8 +25,6 @@ export default function Page() {
                 body: JSON.stringify(values)
             })
 
-            console.log(res)
-
             if (!res) {
                 setLoading(false)
                 toast.error('Ups, Fail to create user, Try again.', {
@@ -54,10 +52,10 @@ export default function Page() {
                     theme: "light",
                     transition: Slide,
                 });
-
             }
         } catch (error) {
-            console.log(error)
+            setLoading(false)
+            throw new Error(error)
         }
     }
 

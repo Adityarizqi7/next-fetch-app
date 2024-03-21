@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ToastContainer } from 'react-toastify';
 
 import UserList from "./components/UsersList";
 import Pagination from "./components/Pagination";
@@ -56,6 +57,8 @@ export default async function Page({searchParams}) {
 
             {/* Pagination */}
             <Pagination searchParams={searchParams} total_pages={usersData?.total_pages} containerClassName='my-[40px]' />
+            
+            <ToastContainer />
       </section>
   );
 }
