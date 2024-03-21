@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
                 {children}
             </main>
             <footer className="max-w-screen-xl mx-auto text-center mt-10 py-8 xl:px-0 px-5 border-t border-solid border-gray-300/80">
-            © { new Date().getFullYear() } Next JS Fetching. All Rights Reserved.
+            © { new Date().getFullYear() } Next Fetch App. All Rights Reserved.
             </footer>
           </Providers>
         </body>
