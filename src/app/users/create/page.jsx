@@ -102,7 +102,7 @@ export default function Page() {
                         <label htmlFor="job" className="block mb-2 text-sm font-medium text-gray-900">Job</label>
                         <input type="text" onChange={handleChangeInput} name="job" id="job" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your job" required />
                     </div>
-                    <button type="submit" className={`${loading ? 'pointer-events-none opacity-50' : ''} w-full mt-2 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors`}>
+                    <button type="submit" className={`${(loading || !values?.name || !values?.job) ? 'pointer-events-none opacity-50' : ''} w-full mt-2 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all`}>
                     {
                         loading ? 'Sending data...' : 'Submit'
                     }

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { toast, ToastContainer, Slide } from 'react-toastify';
+import { toast, Slide } from 'react-toastify';
 import {Popover, PopoverTrigger, PopoverContent, Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input} from "@nextui-org/react";
 
 import 'react-toastify/dist/ReactToastify.css';
