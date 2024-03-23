@@ -14,7 +14,9 @@ export default function SigninModal() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [loadingSignin, setLoadingSignin] = useState(false)
     const [loadingSignout, setLoadingSignout] = useState(false)
-    const [token, setToken] = useState(localStorage.getItem('token'))
+    const [token, setToken] = useState(
+        typeof window !== "undefined" && localStorage.getItem('token')
+    )
 
 
     const [values, setValues] = useState({
@@ -55,11 +57,13 @@ export default function SigninModal() {
                     theme: "light",
                     transition: Slide,
                 });
-                localStorage.setItem('token', response?.token)
+                if (typeof window !== "undefined") {
+                    localStorage.setItem('token', response?.token)
+                }
                 window.location.reload()
             } else {
                 setLoadingSignin(false)
-                toast.error(`Ups, Fail to Signin, "${response?.error}".`, {
+                toast.error(`Ups, Fail to Signin, '${response?.error}'.`, {
                     position: "top-right",
                     autoClose: 3500,
                     hideProgressBar: false,
@@ -97,11 +101,13 @@ export default function SigninModal() {
                     theme: "light",
                     transition: Slide,
                 });
-                localStorage.removeItem('token')
+                if (typeof window !== "undefined") {
+                    localStorage.removeItem('token')
+                }
                 window.location.reload()
             } else {
                 setLoadingSignout(false)
-                toast.error(`Ups, Fail to Signout, "${response?.error}".`, {
+                toast.error(`Ups, Fail to Signout, '${response?.error}'.`, {
                     position: "top-right",
                     autoClose: 3500,
                     hideProgressBar: false,
@@ -119,11 +125,11 @@ export default function SigninModal() {
         }
     }
 
-    useEffect(() => {
-        if (localStorage.getItem('token') && !token) {
-            setToken(localStorage.getItem('token'))
-        }
-    }, [token])
+    // useEffect(() => {
+    //     if (localStorage.getItem('token') && !token) {
+    //         setToken(localStorage.getItem('token'))
+    //     }
+    // }, [token])
 
     return (
         <>
@@ -151,7 +157,7 @@ export default function SigninModal() {
                             <ModalHeader className="flex flex-col gap-1">Signin Next APP</ModalHeader>
                             <ModalBody>
                                 <div className="subtitle mb-2">
-                                    <h4 className="">Sign in to access the full feature. Using the user's email in Reqres.</h4>
+                                    <h4>Sign in to access the full feature. Using the user`&apos;`s email in Reqres.</h4>
                                 </div>
                                 <div className="space-y-5">
                                     <Input
