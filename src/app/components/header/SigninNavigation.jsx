@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react";
-import SigninModal from "../modal/SigninModal";
+import { useState, useEffect } from "react";
 import { toast, Slide } from 'react-toastify';
+import SigninModal from "../modal/SigninModal";
 import {Button, Popover, PopoverTrigger, PopoverContent, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input} from "@nextui-org/react";
 
 
@@ -13,7 +13,7 @@ export default function SigninNavigation({classNameProfileButton}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [loadingSignin, setLoadingSignin] = useState(false)
     const [loadingSignout, setLoadingSignout] = useState(false)
-    const [token, setToken] = useState(localStorage.getItem('token'))
+    const [token, setToken] = useState(null)
 
 
     const [values, setValues] = useState({
@@ -122,11 +122,10 @@ export default function SigninNavigation({classNameProfileButton}) {
         }
     }
 
-    // useEffect(() => {
-    //     if (localStorage.getItem('token') && !token) {
-    //         setToken(localStorage.getItem('token'))
-    //     }
-    // }, [token])
+    useEffect(() => {
+        const tokenValue = window.localStorage.getItem('token')
+        setToken(tokenValue ? String(tokenValue) : null)
+    }, [])
 
     return (
         !token ?
