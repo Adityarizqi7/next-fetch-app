@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { useState } from "react"
 
+import SigninNavigation from "./SigninNavigation"
+
 const NavigationMobile = () => {
 
     const [openMenu, setOpenMenu] = useState(false)
@@ -26,6 +28,9 @@ const NavigationMobile = () => {
                     </li>
                     <li onClick={handleOpenMenu}>
                         <Link href="/users?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
+                    </li>
+                    <li>
+                        <SigninNavigation classNameProfileButton='w-full justify-between' />
                     </li>
                 </ul>
             </div>
