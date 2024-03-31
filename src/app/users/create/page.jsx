@@ -19,6 +19,7 @@ export default function Page() {
         event.preventDefault()
 
         try {
+            
             setLoading(true)
             const res = await fetch('https://reqres.in/api/users', {
                 method: 'POST',

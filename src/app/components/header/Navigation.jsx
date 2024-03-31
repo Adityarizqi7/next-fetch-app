@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ToastContainer } from 'react-toastify';
 
-import SigninModal from "./SigninModal"
+import SigninNavigation from "./SigninNavigation"
 import NavigationMobile from "./NavigationMobile"
 
 const Navigation = () => {
@@ -23,7 +23,7 @@ const Navigation = () => {
                             <Link href="/users?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
                         </li>
                         <li>
-                            <SigninModal />
+                            <SigninNavigation />
                         </li>
                     </ul>
                 </div>
