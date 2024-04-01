@@ -1,29 +1,39 @@
 import Link from "next/link";
-import { ToastContainer } from 'react-toastify';
+import UniversitiesList from "./components/UniversitiesList";
 
-import UserList from "./components/UsersList";
-import Pagination from "./components/Pagination";
-import CreateButton from "../components/button/CreateButton";
-
-async function getData(page, per_page) {
-    const res = await fetch(`https://reqres.in/api/users?page=${page}&per_page=${per_page}`, { 
-      next: {}
-    })
+async function getData(name, country) {
+    let res
+    if (name) {
+        res = await fetch(`http://universities.hipolabs.com/search?name=${name}`, { 
+          next: {
+            revalidate: 60
+          }
+        })
+    } else {
+      res = await fetch(`http://universities.hipolabs.com/search?country=${country}`, { 
+        next: {
+            revalidate: 60
+        }
+      })
+    }
 
     if (!res.ok) {
-      throw new Error('Failed to fetch data User')
+      throw new Error('Failed to fetch data Universities')
     }
     return res.json()
+
 }
 
 export const metadata = {
-  title: 'Users',
-  description: 'Users - API Data Fetching with Next JS by @adityarizqiardhana',
+  title: 'Universities Around The World',
+  description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
 }
 
-export default async function Page({searchParams}) {
+export default async function Page({ searchParams }) {
 
-  const usersData = await getData(searchParams.page || 1, 10);
+  const univName = searchParams.q || ''
+  const countryName = searchParams.ctr
+  const universitiesData = await getData(univName, countryName);
 
   return (
       <section className="users-list-component xl:px-0 px-5">
@@ -43,22 +53,14 @@ export default async function Page({searchParams}) {
                           <svg className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                           </svg>
-                          <div className="ms-1 text-sm font-medium text-blue-500 md:ms-2">Users</div>
+                          <div className="ms-1 text-sm font-medium text-blue-500 md:ms-2">Universities ({countryName ? countryName : 'All Country'})</div>
                       </div>
                   </li>
               </ol>
-
-              {/* Create Button */}
-              <CreateButton pathlink='/users/create' />
             </nav>
 
-            {/* User Table */}
-            <UserList dataUser={usersData?.data} />
-
-            {/* Pagination */}
-            <Pagination searchParams={searchParams} total_pages={usersData?.total_pages} containerClassName='my-[40px]' />
-            
-            <ToastContainer />
+            {/* Universities Table */}
+            <UniversitiesList dataUniversities={universitiesData} />
       </section>
   );
 }
