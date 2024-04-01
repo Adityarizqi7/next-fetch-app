@@ -191,6 +191,7 @@ export default function UniversitiesList(dataUniversities) {
 						router.push(`/universities?page=1&ctr=Indonesia`)
 					}}
 					onValueChange={onSearchChangeAllUniversities}
+					description="Please press 'Enter' to search universities."
 				/>
 			</form>
 			<Table 
