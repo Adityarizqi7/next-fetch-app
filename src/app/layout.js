@@ -8,7 +8,10 @@ const inter = Inter({ subsets: ["latin"] });
 import "./globals.css"
 
 export const metadata = {
-  title: "API Data Fetching with Next JS - @adityarizqiardhana",
+  title: {
+    template: " %s | API Data Fetching with Next JS - @adityarizqiardhana",
+    default: "API Data Fetching with Next JS - @adityarizqiardhana"
+  },
   description: "API Data Fetching with Next JS by @adityarizqiardhana",
 };
 

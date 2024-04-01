@@ -14,6 +14,16 @@ async function getData(id) {
     return res.json()
 }
 
+export async function generateMetadata({ params }) {
+
+    const { data } = await getData(params.id)
+
+    return {
+        title: `${data?.first_name + ' ' + data?.last_name}`,
+        description:`${data?.first_name + ' ' + data?.last_name} - API Data Fetching with Next JS by @adityarizqiardhana`,
+    }
+}
+
 export default async function Page({ params }) {
 
     const { data } = await getData(params.id)
