@@ -23,7 +23,7 @@ const Navigation = () => {
                             <Link href="/users?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
                         </li>
                         <li>
-                            <Link href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Universities</Link>
+                            <a href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Universities</a>
                         </li>
                         <li>
                             <SigninNavigation />
