@@ -17,7 +17,7 @@ export const countries = [
     },
     {
         "id": "5",
-        "name": "Ukraine"
+        "name": "Bosnia and Herzegovina"
     },
     {
         "id": "6",
@@ -713,106 +713,98 @@ export const countries = [
     },
     {
         "id": "181",
-        "name": "Tajikistan"
-    },
-    {
-        "id": "182",
         "name": "Tanzania"
     },
     {
-        "id": "183",
+        "id": "182",
         "name": "Tanzania, United Republic of"
     },
     {
-        "id": "184",
+        "id": "183",
         "name": "Thailand"
     },
     {
-        "id": "185",
+        "id": "184",
         "name": "Togo"
     },
     {
-        "id": "186",
+        "id": "185",
         "name": "Trinidad and Tobago"
     },
     {
-        "id": "187",
+        "id": "186",
         "name": "Tunisia"
     },
     {
-        "id": "188",
+        "id": "187",
         "name": "Turkey"
     },
     {
-        "id": "189",
+        "id": "188",
         "name": "Turkmenistan"
     },
     {
-        "id": "190",
+        "id": "189",
         "name": "Turks and Caicos Islands"
     },
     {
-        "id": "191",
+        "id": "190",
         "name": "Uganda"
     },
     {
-        "id": "192",
+        "id": "191",
         "name": "Uruguay"
     },
     {
-        "id": "193",
+        "id": "192",
         "name": "Uzbekistan"
     },
     {
-        "id": "194",
+        "id": "193",
         "name": "Venezuela, Bolivarian Republic of"
     },
     {
-        "id": "195",
+        "id": "194",
         "name": "Viet Nam"
     },
     {
-        "id": "196",
+        "id": "195",
         "name": "Vietnam"
     },
     {
-        "id": "197",
+        "id": "196",
         "name": "Virgin Islands, British"
     },
     {
-        "id": "198",
+        "id": "197",
         "name": "Yemen"
     },
     {
-        "id": "199",
+        "id": "198",
         "name": "Zambia"
     },
     {
-        "id": "200",
+        "id": "199",
         "name": "Zimbabwe"
     },
     {
-        "id": "201",
+        "id": "200",
         "name": "Belize"
     },
     {
-        "id": "202",
+        "id": "201",
         "name": "Benin"
     },
     {
-        "id": "203",
+        "id": "202",
         "name": "Bermuda"
     },
     {
-        "id": "204",
+        "id": "203",
         "name": "Bhutan"
     },
     {
-        "id": "205",
+        "id": "204",
         "name": "Bolivia, Plurinational State of"
-    },
-    {
-        "id": "206",
-        "name": "Bosnia and Herzegovina"
     },
 ]

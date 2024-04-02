@@ -10,11 +10,15 @@ async function getData(name, country) {
           }
         })
     } else {
-      res = await fetch(`http://universities.hipolabs.com/search?country=${country}`, { 
-        next: {
-            revalidate: 60
-        }
-      })
+      if (country === 'all') {
+        res = await fetch(`http://universities.hipolabs.com/search?country=`, {
+          cache: "no-store"
+        })
+      } else {
+        res = await fetch(`http://universities.hipolabs.com/search?country=${country}`, {
+          cache: 'no-store'
+        })
+      }
     }
 
     if (!res.ok) {

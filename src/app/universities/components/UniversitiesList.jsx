@@ -5,6 +5,7 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Input, Select, SelectItem} from "@nextui-org/react";
 
 import { countries } from '../data/countries';
+import { formatNumber } from 'src/utils/number';
 import { SearchIcon } from 'src/app/components/icons/SearchIcon';
 
 export default function UniversitiesList(dataUniversities) {
@@ -12,9 +13,13 @@ export default function UniversitiesList(dataUniversities) {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
+	const [defaultValueCountry, setDefaultValueCountry] = useState(new Set([searchParams.get('ctr')]))
+	
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const [page, setPage] = useState(Number(searchParams.get('page')));
   	const pages = Math.ceil(dataUniversities?.dataUniversities?.length / rowsPerPage);
+
+	const [sortedBy, setSortedBy] = useState('ascending');
 
 	const [filterValue, setFilterValue] = useState("");
 	const hasSearchFilter = Boolean(filterValue);
@@ -34,17 +39,31 @@ export default function UniversitiesList(dataUniversities) {
 	}, [dataUniversities, filterValue]);
 
 	const items = useMemo(() => {
-		const sortedItems = filteredItems?.sort((a, b) => {
-			if (a.name > b.name) return 1;
-			if (a.name < b.name) return -1;
-			return 0;
-		});
-	
-		const start = (page - 1) * rowsPerPage;
-		const end = start + rowsPerPage;
-	
-		return sortedItems?.slice(start, end);
-	}, [page, filteredItems, rowsPerPage]);
+
+		if (sortedBy === 'ascending') {
+			const sortedItems = filteredItems?.sort((a, b) => {
+				if (a.name > b.name) return 1;
+				if (a.name < b.name) return -1;
+				return 0;
+			});
+			const start = (page - 1) * rowsPerPage;
+			const end = start + rowsPerPage;
+		
+			return sortedItems?.slice(start, end);
+		} else {
+			const sortedItems = filteredItems?.sort((a, b) => {
+				if (a.name < b.name) return 1;
+				if (a.name > b.name) return -1;
+				return 0;
+			});
+			const start = (page - 1) * rowsPerPage;
+			const end = start + rowsPerPage;
+		
+			return sortedItems?.slice(start, end);
+		}
+
+		
+	}, [page, filteredItems, rowsPerPage, sortedBy]);
 
 	const countriesList = useMemo(() => {
 		const uniqueCountries = [...new Set(countries)];
@@ -78,8 +97,17 @@ export default function UniversitiesList(dataUniversities) {
 	}, []);
 
 	const handleSelectCountry = useCallback((e) => {
-		let filteredCountry = countries?.find((element) => element.id === e.target.value)
-		router.push(`/universities?page=${page}&ctr=${filteredCountry?.name}`)
+		if (e.target.value !== 'all') {
+			// let filteredCountry = countries?.find((element) => element.id === e.target.value)
+
+			router.push(`/universities?page=${page}&ctr=${e.target.value}`)
+		} else {
+			router.push(`/universities?page=${page}&ctr=all`)
+		}
+	}, [router, searchParams])
+
+	const handleSortedBy = useCallback((e) => {
+		setSortedBy(e.target.value)
 	}, [])
 
 	const topContent = useMemo(() => {
@@ -92,7 +120,7 @@ export default function UniversitiesList(dataUniversities) {
 							base: "w-full sm:max-w-[44%]",
 							inputWrapper: "border-1",
 						}}
-						placeholder="Search University (Current Country)..."
+						placeholder="Search University in this Table..."
 						size="lg"
 						startContent={<SearchIcon className="text-default-300" />}
 						value={filterValue}
@@ -100,24 +128,45 @@ export default function UniversitiesList(dataUniversities) {
 						onClear={() => setFilterValue("")}
 						onValueChange={onSearchChange}
 					/>
-					<Select
-						size='lg'
-						className="sm:w-60 w-full"
-						onChange={handleSelectCountry}
-						placeholder="Select a country"
-						aria-labelledby='Select Country'
-					>
-						{countriesList.map((country) => (
-							<SelectItem key={country.id} value={country.name}>
-								{country.name}
+					<div className="flex gap-2">
+						<Select
+							size='lg'
+							selectedKeys={defaultValueCountry}
+							onSelectionChange={setDefaultValueCountry}
+							className="sm:w-60 w-full"
+							onChange={handleSelectCountry}
+							placeholder="Select a country"
+							aria-labelledby='Select Country'
+						>
+							<SelectItem key='all' value='all'>
+								All
 							</SelectItem>
-						))}
-					</Select>
+							{countriesList.map((country) => (
+								<SelectItem key={country.name} value={country.name}>
+									{country.name}
+								</SelectItem>
+							))}
+						</Select>
+						<Select
+							size='lg'
+							className="sm:w-60 w-full"
+							onChange={handleSortedBy}
+							placeholder="Sorted by"
+							aria-labelledby='Sorted by'
+						>
+							<SelectItem key='ascending' value='ascending'>
+								Ascending
+							</SelectItem>
+							<SelectItem key='descending' value='descending'>
+								Descending
+							</SelectItem>
+						</Select>
+					</div>
 				</div>
 				<div className="flex flex-wrap gap-y-3 justify-between items-center">
 					<span className="text-default-400 text-small">Total {
-						filterValue ? filteredItems?.length + ' ' + "universities found" :
-						dataUniversities?.dataUniversities?.length + ' ' + "universities"
+						filterValue ? formatNumber(filteredItems?.length) + ' ' + "universities found" :
+						formatNumber(dataUniversities?.dataUniversities?.length) + ' ' + "universities"
 					}</span>
 					<label className="flex items-center text-default-400 text-small">
 						Rows per page:
@@ -131,6 +180,9 @@ export default function UniversitiesList(dataUniversities) {
 							<option value="15">15</option>
 							<option value="20">20</option>
 							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="75">75</option>
+							<option value="100">100</option>
 						</select>
 					</label>
 				</div>
@@ -167,6 +219,9 @@ export default function UniversitiesList(dataUniversities) {
 		if(searchParams.get('ctr') === '') {
 			router.push(`/universities?page=${page}&ctr=Indonesia`)
 		}
+		if(!searchParams.get('ctr')) {
+			router.push(`/universities?page=${1}&ctr=Indonesia`)
+		}
 	}, [searchParams, router])
 
 	return (
@@ -181,7 +236,7 @@ export default function UniversitiesList(dataUniversities) {
 						base: "w-full sm:max-w-[44%] mb-8",
 						inputWrapper: "border-1",
 					}}
-					placeholder="Search Universities (All Country)..."
+					placeholder="Search Universities..."
 					size="lg"
 					startContent={<SearchIcon className="text-default-300" />}
 					value={filterValueSeacrhUniversities}

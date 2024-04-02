@@ -33,7 +33,7 @@ const NavigationMobile = () => {
                         <Link href="/universities?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
                     </li>
                     <li onClick={handleOpenMenu}>
-                        <Link href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
+                        <a href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</a>
                     </li>
                     <li>
                         <SigninNavigation classNameProfileButton='w-full justify-between' />
