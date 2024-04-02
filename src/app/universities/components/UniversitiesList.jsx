@@ -113,11 +113,11 @@ export default function UniversitiesList(dataUniversities) {
 	const topContent = useMemo(() => {
 		return (
 			<div className="flex flex-col gap-4 mt-1">
-				<div className="flex sm:flex-row flex-col justify-between gap-x-3 gap-y-7 items-end mb-2">
+				<div className="flex md:flex-row flex-col justify-between gap-x-3 gap-y-7 items-end mb-2">
 					<Input
 						isClearable
 						classNames={{
-							base: "w-full sm:max-w-[44%]",
+							base: "w-full md:max-w-[44%]",
 							inputWrapper: "border-1",
 						}}
 						placeholder="Search University in this Table..."
@@ -128,12 +128,12 @@ export default function UniversitiesList(dataUniversities) {
 						onClear={() => setFilterValue("")}
 						onValueChange={onSearchChange}
 					/>
-					<div className="flex gap-2">
+					<div className="flex sm:flex-row flex-col w-full gap-x-2 gap-y-6">
 						<Select
 							size='lg'
 							selectedKeys={defaultValueCountry}
 							onSelectionChange={setDefaultValueCountry}
-							className="sm:w-60 w-full"
+							className="md:w-60 w-full"
 							onChange={handleSelectCountry}
 							placeholder="Select a country"
 							aria-labelledby='Select Country'
@@ -149,7 +149,7 @@ export default function UniversitiesList(dataUniversities) {
 						</Select>
 						<Select
 							size='lg'
-							className="sm:w-60 w-full"
+							className="md:w-60 w-full"
 							onChange={handleSortedBy}
 							placeholder="Sorted by"
 							aria-labelledby='Sorted by'
