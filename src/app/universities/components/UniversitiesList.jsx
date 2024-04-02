@@ -93,7 +93,6 @@ export default function UniversitiesList(dataUniversities) {
 
 	const onSearchChangeAllUniversities = useCallback((value) => {
 		setFilterValueSeacrhAllUniversities(value)
-		// router.push(`/universities?page=${page}&ctr=&q=${value}`)
 	}, []);
 
 	const handleSelectCountry = useCallback((e) => {
@@ -112,58 +111,8 @@ export default function UniversitiesList(dataUniversities) {
 
 	const topContent = useMemo(() => {
 		return (
-			<div className="flex flex-col gap-4 mt-1">
-				<div className="flex md:flex-row flex-col justify-between gap-x-3 gap-y-7 items-end mb-2">
-					<Input
-						isClearable
-						classNames={{
-							base: "w-full md:max-w-[44%]",
-							inputWrapper: "border-1",
-						}}
-						placeholder="Search University in this Table..."
-						size="lg"
-						startContent={<SearchIcon className="text-default-300" />}
-						value={filterValue}
-						variant="bordered"
-						onClear={() => setFilterValue("")}
-						onValueChange={onSearchChange}
-					/>
-					<div className="flex sm:flex-row flex-col w-full gap-x-2 gap-y-6">
-						<Select
-							size='lg'
-							selectedKeys={defaultValueCountry}
-							onSelectionChange={setDefaultValueCountry}
-							className="md:w-60 w-full"
-							onChange={handleSelectCountry}
-							placeholder="Select a country"
-							aria-labelledby='Select Country'
-						>
-							<SelectItem key='all' value='all'>
-								All
-							</SelectItem>
-							{countriesList.map((country) => (
-								<SelectItem key={country.name} value={country.name}>
-									{country.name}
-								</SelectItem>
-							))}
-						</Select>
-						<Select
-							size='lg'
-							className="md:w-60 w-full"
-							onChange={handleSortedBy}
-							placeholder="Sorted by"
-							aria-labelledby='Sorted by'
-						>
-							<SelectItem key='ascending' value='ascending'>
-								Ascending
-							</SelectItem>
-							<SelectItem key='descending' value='descending'>
-								Descending
-							</SelectItem>
-						</Select>
-					</div>
-				</div>
-				<div className="flex flex-wrap gap-y-3 justify-between items-center">
+			<div className="flex flex-col gap-4 mt-1 w-full">
+				<div className="flex w-full flex-wrap gap-y-3 justify-between items-center">
 					<span className="text-default-400 text-small">Total {
 						filterValue ? formatNumber(filteredItems?.length) + ' ' + "universities found" :
 						formatNumber(dataUniversities?.dataUniversities?.length) + ' ' + "universities"
@@ -185,6 +134,59 @@ export default function UniversitiesList(dataUniversities) {
 							<option value="100">100</option>
 						</select>
 					</label>
+				</div>
+				<div className="flex w-full md:flex-row flex-col justify-between gap-x-3 gap-y-7 items-end mb-2">
+					<Input
+						isClearable
+						classNames={{
+							base: "w-full md:max-w-[44%]",
+							inputWrapper: "border-1",
+						}}
+						placeholder="Search University in this Table..."
+						size="lg"
+						startContent={<SearchIcon className="text-default-300" />}
+						value={filterValue}
+						variant="bordered"
+						onClear={() => setFilterValue("")}
+						onValueChange={onSearchChange}
+					/>
+					<div className="flex sm:flex-row flex-col w-full gap-x-2 gap-y-6">
+						{
+							!searchParams.get('q') &&
+							<Select
+								size='lg'
+								selectedKeys={defaultValueCountry}
+								onSelectionChange={setDefaultValueCountry}
+								className="w-full"
+								onChange={handleSelectCountry}
+								placeholder="Select a country"
+								aria-labelledby='Select Country'
+							>
+								<SelectItem key='all' value='all'>
+									All
+								</SelectItem>
+								{countriesList.map((country) => (
+									<SelectItem key={country.name} value={country.name}>
+										{country.name}
+									</SelectItem>
+								))}
+							</Select>
+						}
+						<Select
+							size='lg'
+							className="w-full"
+							onChange={handleSortedBy}
+							placeholder="Sorted by"
+							aria-labelledby='Sorted by'
+						>
+							<SelectItem key='ascending' value='ascending'>
+								Ascending
+							</SelectItem>
+							<SelectItem key='descending' value='descending'>
+								Descending
+							</SelectItem>
+						</Select>
+					</div>
 				</div>
 			</div>
 		);
@@ -219,9 +221,6 @@ export default function UniversitiesList(dataUniversities) {
 		if(searchParams.get('ctr') === '') {
 			router.push(`/universities?page=${page}&ctr=Indonesia`)
 		}
-		if(!searchParams.get('ctr')) {
-			router.push(`/universities?page=${1}&ctr=Indonesia`)
-		}
 	}, [searchParams, router])
 
 	return (
@@ -231,6 +230,8 @@ export default function UniversitiesList(dataUniversities) {
 				router.push(`/universities?page=1&q=${filterValueSeacrhUniversities?.toLocaleLowerCase()}`)
 			}}>
 				<Input
+					value={filterValueSeacrhUniversities}
+					defaultValue={searchParams.get('q') !== '' && searchParams.get('q')}
 					isClearable
 					classNames={{
 						base: "w-full sm:max-w-[44%] mb-8",
@@ -239,7 +240,6 @@ export default function UniversitiesList(dataUniversities) {
 					placeholder="Search Universities..."
 					size="lg"
 					startContent={<SearchIcon className="text-default-300" />}
-					value={filterValueSeacrhUniversities}
 					variant="bordered"
 					onClear={() => {
 						setFilterValueSeacrhAllUniversities("")
@@ -252,7 +252,7 @@ export default function UniversitiesList(dataUniversities) {
 			<Table 
 				isStriped
 				topContent={topContent}
-				topContentPlacement="inside"
+				topContentPlacement="outside"
 				bottomContent={bottomContent}
 				aria-label="Universities List"
 				bottomContentPlacement="outside"
