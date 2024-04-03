@@ -5,9 +5,7 @@ async function getData(name, country) {
     let res
     if (name) {
         res = await fetch(`http://universities.hipolabs.com/search?name=${name}`, { 
-          next: {
-            revalidate: 60
-          }
+			cache: "no-store"
         })
     } else {
       if (country === 'all') {
@@ -16,7 +14,9 @@ async function getData(name, country) {
         })
       } else {
         res = await fetch(`http://universities.hipolabs.com/search?country=${country}`, {
-          cache: 'no-store'
+			next: {
+				revalidate: 60
+			}
         })
       }
     }
@@ -28,9 +28,60 @@ async function getData(name, country) {
 
 }
 
-export const metadata = {
-  title: 'Universities Around The World',
-  description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+/** @type {import("next").Viewport} */
+export const viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 4,
+	userScalable: true,
+	shrinkToFit: 'no',
+}
+
+/** @type {import("next").Metadata} */
+export async function generateMetadata() {
+	return {
+		title: 'Universities Around The World',
+		description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+		applicationName: 'Next Fetch APP',
+		category: ['college', 'universities'],
+		keywords: ['Next', 'App', 'Universities', 'List', 'World', 'College'],
+		authors: [{ name: 'Aditya Rizqi Ardhana', url: 'https://adityara.netlify.app' }],
+		creator: 'Aditya Rizqi Ardhana',
+		publisher: 'Aditya Rizqi Ardhana',
+		openGraph: {
+			title: 'Universities Around The World',
+			description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+			url: 'https://nextapp-fetching.netlify.app/universities?page=1&ctr=Indonesia',
+			siteName: 'Universities Around The World - Next Fetch App',
+			images: [
+				{
+					url: 'https://nextapp-fetching.netlify.app/src/app/opengraph-image-universities.png',
+					width: 800,
+					height: 600,
+				},
+			],
+			type: 'article',
+		},
+		robots: {
+			index: false,
+			follow: true,
+			nocache: true,
+			googleBot: {
+			  index: true,
+			  follow: false,
+			  noimageindex: true,
+			  'max-video-preview': -1,
+			  'max-image-preview': 'large',
+			  'max-snippet': -1,
+			},
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: 'Universities Around The World',
+			description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+			images: ['https://nextapp-fetching.netlify.app/src/app/opengraph-image-universities.png'],
+		},
+	}
 }
 
 export default async function Page({ searchParams }) {
