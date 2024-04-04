@@ -41,18 +41,18 @@ export const viewport = {
 export async function generateMetadata() {
 	return {
 		title: 'Universities Around The World',
-		description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
-		applicationName: 'Next Fetch APP',
+		description: 'Get to know Universities around the World - World App by @adityarizqiardhana',
+		applicationName: 'World APP',
 		category: ['college', 'universities'],
-		keywords: ['Next', 'App', 'Universities', 'List', 'World', 'College'],
+		keywords: ['Next', 'World', 'App', 'Universities', 'List', 'World', 'College'],
 		authors: [{ name: 'Aditya Rizqi Ardhana', url: 'https://adityara.netlify.app' }],
 		creator: 'Aditya Rizqi Ardhana',
 		publisher: 'Aditya Rizqi Ardhana',
 		openGraph: {
 			title: 'Universities Around The World',
-			description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+			description: 'Get to know Universities around the World - World App by @adityarizqiardhana',
 			url: 'https://nextapp-fetching.netlify.app/universities?page=1&ctr=Indonesia',
-			siteName: 'Universities Around The World - Next Fetch App',
+			siteName: 'Universities Around The World - World App',
 			images: [
 				{
 					url: 'https://nextapp-fetching.netlify.app/src/app/opengraph-image-universities.png',
@@ -78,7 +78,7 @@ export async function generateMetadata() {
 		twitter: {
 			card: 'summary_large_image',
 			title: 'Universities Around The World',
-			description: 'Get to know Universities around the World - API Data Fetching with Next JS by @adityarizqiardhana',
+			description: 'Get to know Universities around the World - World App by @adityarizqiardhana',
 			images: ['https://nextapp-fetching.netlify.app/src/app/opengraph-image-universities.png'],
 		},
 	}
