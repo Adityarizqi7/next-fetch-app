@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 
 import SigninNavigation from "./SigninNavigation"
+import { MenuCategoryNavigation } from "./NavigationMenu"
 
 const NavigationMobile = () => {
 
@@ -26,14 +27,8 @@ const NavigationMobile = () => {
                     <li onClick={handleOpenMenu}>
                         <Link href="/" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Home</Link>
                     </li>
-                    <li onClick={handleOpenMenu}>
-                        <Link href="/users?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
-                    </li>
-                    <li onClick={handleOpenMenu}>
-                        <Link href="/universities?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
-                    </li>
-                    <li onClick={handleOpenMenu}>
-                        <a href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</a>
+                    <li>
+                        <MenuCategoryNavigation onClick={handleOpenMenu} isMobileNavigation={true} />
                     </li>
                     <li>
                         <SigninNavigation classNameProfileButton='w-full justify-between' />
