@@ -9,10 +9,10 @@ import "./globals.css"
 
 export const metadata = {
   title: {
-    template: " %s | API Data Fetching with Next JS - @adityarizqiardhana",
-    default: "API Data Fetching with Next JS - @adityarizqiardhana"
+    template: " %s | World App - @adityarizqiardhana",
+    default: "World App - @adityarizqiardhana"
   },
-  description: "API Data Fetching with Next JS by @adityarizqiardhana",
+  description: "World App by @adityarizqiardhana",
 };
 
 export default function RootLayout({ children }) {
@@ -21,13 +21,15 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <NextTopLoader />
           <Providers>
-            <Navigation />
-            <main className="max-w-screen-xl mx-auto sm:mt-10 mt-8">
-                {children}
-            </main>
-            <footer className="max-w-screen-xl mx-auto text-center mt-10 py-8 xl:px-0 px-5 border-t border-solid border-gray-300/80">
-            © { new Date().getFullYear() } Next Fetch App. All Rights Reserved.
-            </footer>
+            <section id="app" className="relative max-w-screen-xl mx-auto">
+              <Navigation />
+              <main className="sm:mt-10 mt-8">
+                  {children}
+              </main>
+              <footer className="text-center mt-10 py-8 xl:px-0 px-5 border-t border-solid border-gray-300/80">
+              © { new Date().getFullYear() } Next Fetch App. All Rights Reserved.
+              </footer>
+            </section>
           </Providers>
         </body>
     </html>

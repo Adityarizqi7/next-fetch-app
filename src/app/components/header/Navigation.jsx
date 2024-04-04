@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 
 import SigninNavigation from "./SigninNavigation"
 import NavigationMobile from "./NavigationMobile"
+import { MenuCategoryNavigation } from "./NavigationMenu";
 
 const Navigation = () => {
 
@@ -11,7 +12,7 @@ const Navigation = () => {
             <div className="max-w-screen-xl bg-white border-b border-solid border-gray-300/80 flex flex-wrap items-center justify-between mx-auto py-6 sm:px-2 px-5">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap">Next Fetch App</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap">World App</span>
                 </Link>
                 <NavigationMobile />
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -19,11 +20,8 @@ const Navigation = () => {
                         <li>
                             <Link href="/" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Home</Link>
                         </li>
-                        <li>
-                            <Link href="/users?page=1" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Users</Link>
-                        </li>
-                        <li>
-                            <a href="/universities?page=1&ctr=Indonesia" className="block text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">Universities</a>
+                        <li className="text-slate-900 hover:text-opacity-80 rounded md:bg-transparent">
+                            <MenuCategoryNavigation />
                         </li>
                         <li>
                             <SigninNavigation />
