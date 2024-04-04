@@ -30,16 +30,16 @@ export async function generateMetadata({ params }) {
 
     return {
         title: `${data?.first_name + ' ' + data?.last_name}`,
-        description: `${data?.first_name + ' ' + data?.last_name} - API Data Fetching with Next JS by @adityarizqiardhana`,
-        applicationName: 'Next Fetch APP',
+        description: `${data?.first_name + ' ' + data?.last_name} - World App by @adityarizqiardhana`,
+        applicationName: 'World APP',
 		category: 'user detail',
-		keywords: ['Next', 'App', 'user', 'detail'],
+		keywords: ['Next', 'World', 'App', 'user', 'detail'],
 		authors: [{ name: 'Aditya Rizqi Ardhana', url: 'https://adityara.netlify.app' }],
 		creator: 'Aditya Rizqi Ardhana',
 		publisher: 'Aditya Rizqi Ardhana',
 		openGraph: {
 			title: `${data?.first_name + ' ' + data?.last_name}`,
-			description: `${data?.first_name + ' ' + data?.last_name} - API Data Fetching with Next JS by @adityarizqiardhana`,
+			description: `${data?.first_name + ' ' + data?.last_name} - World App by @adityarizqiardhana`,
 			url: `https://nextapp-fetching.netlify.app/users/${params.id}`,
 			siteName: `User Detail ${data?.first_name + ' ' + data?.last_name} - Next Fetch App`,
 			images: [
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }) {
 		twitter: {
 			card: 'summary_large_image',
 			title: `${data?.first_name + ' ' + data?.last_name}`,
-			description: `${data?.first_name + ' ' + data?.last_name} - API Data Fetching with Next JS by @adityarizqiardhana`,
+			description: `${data?.first_name + ' ' + data?.last_name} - World App by @adityarizqiardhana`,
 			images: ['https://nextapp-fetching.netlify.app/src/app/opengraph-image-user-detail.png'],
 		},
     }

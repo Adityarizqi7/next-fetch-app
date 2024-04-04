@@ -34,18 +34,18 @@ export const viewport = {
 export async function generateMetadata() {
 	return {
 		title: 'Users',
-		description: 'Users - API Data Fetching with Next JS by @adityarizqiardhana',
-		applicationName: 'Next Fetch APP',
+		description: 'Users - World App by @adityarizqiardhana',
+		applicationName: 'World APP',
 		category: 'users',
-		keywords: ['Next', 'App', 'users'],
+		keywords: ['Next', 'World', 'App', 'users'],
 		authors: [{ name: 'Aditya Rizqi Ardhana', url: 'https://adityara.netlify.app' }],
 		creator: 'Aditya Rizqi Ardhana',
 		publisher: 'Aditya Rizqi Ardhana',
 		openGraph: {
 			title: 'Users',
-			description: 'Users - API Data Fetching with Next JS by @adityarizqiardhana',
+			description: 'Users - World App by @adityarizqiardhana',
 			url: 'https://nextapp-fetching.netlify.app/users?page=1',
-			siteName: 'Users List - Next Fetch App',
+			siteName: 'Users List - World App',
 			images: [
 				{
 					url: 'https://nextapp-fetching.netlify.app/src/app/opengraph-image-users.png',
@@ -71,7 +71,7 @@ export async function generateMetadata() {
 		twitter: {
 			card: 'summary_large_image',
 			title: 'Users',
-			description: 'Users - API Data Fetching with Next JS by @adityarizqiardhana',
+			description: 'Users - World App by @adityarizqiardhana',
 			images: ['https://nextapp-fetching.netlify.app/src/app/opengraph-image-users.png'],
 		},
 	}
