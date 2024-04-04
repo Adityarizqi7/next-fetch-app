@@ -16,11 +16,6 @@ async function getData(page, per_page) {
     return res.json()
 }
 
-export const metadata = {
-  title: 'Users',
-  description: 'Users - API Data Fetching with Next JS by @adityarizqiardhana',
-}
-
 /** @type {import("next").Viewport} */
 export const viewport = {
     width: 'device-width',
