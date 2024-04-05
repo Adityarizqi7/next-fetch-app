@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
                   {children}
               </main>
               <footer className="text-center mt-10 py-8 xl:px-0 px-5 border-t border-solid border-gray-300/80">
-              © { new Date().getFullYear() } Next Fetch App. All Rights Reserved.
+              © { new Date().getFullYear() } World App. All Rights Reserved.
               </footer>
             </section>
           </Providers>
