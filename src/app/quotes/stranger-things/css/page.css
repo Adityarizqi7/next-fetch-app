@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'BenguiatBold';
+    src: url('../../../../assets/fonts/stranger-things/stranger-things/BenguiatBold.ttf') format('truetype');
+}
+
+/* Contoh penggunaan font Benguiat Bold */
+.stranger-things-font-bold {
+    font-family: 'BenguiatBold', sans-serif;
+    font-weight: bold;
+}
+
+.bg-button-submit {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-image: url('../../../../assets/stranger-things-bg.jpg');
+}
+.bg-quote {
+    background-position: center;
+    background-image: url('../../../../assets/stranger-things-quote-bg.jpg');
+}
