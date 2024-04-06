@@ -155,9 +155,9 @@ export default function QuotesGenerator() {
                             {
                                 quotesData?.map((element, index) => {
                                     return (
-                                        <div onClick={() => handleCopyToClipboard(`"${element?.quote}" — ${element?.author}`)} key={index} className="box-item-result py-5 px-2 border border-gray-300/50 rounded-[6px] text-white font-bold bg-quote cursor-pointer">
+                                        <div onClick={() => handleCopyToClipboard(`'${element?.quote}' — ${element?.author}`)} key={index} className="box-item-result py-5 px-2 border border-gray-300/50 rounded-[6px] text-white font-bold bg-quote cursor-pointer">
                                             <h2>
-                                                "{element?.quote}" — <span className="stranger-things-font-bold">{element?.author}</span>
+                                            `&quot;`{element?.quote}`&quot;` — <span className="stranger-things-font-bold">{element?.author}</span>
                                             </h2>
                                         </div>
                                     )
