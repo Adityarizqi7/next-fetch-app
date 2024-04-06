@@ -89,7 +89,7 @@ export default async function Page() {
 			<article>
 				<div className="title-article text-center bg-[#e61414] py-6 rounded-[4px]">
 					<h1 className="text-[2.5rem] font-bold stranger-things-font-bold text-black 4xs:text-[8vw]">STRANGER THINGS Quotes</h1>
-					<h4 className="text-slate-100 4xs:[7vw]">"Get some random cool quotes of Stranger Things"</h4>
+					<h4 className="text-slate-100 4xs:[7vw]">`&quot;`Get some random cool quotes of Stranger Things`&quot;`</h4>
 				</div>
 				<QuotesGenerator />
 			</article>
