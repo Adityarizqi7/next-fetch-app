@@ -2,7 +2,7 @@
 
 import { useCallback, useState, useEffect, useRef } from "react";
 import { toast, ToastContainer, Slide } from 'react-toastify';
-import {Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure} from "@nextui-org/react";
+import {Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure, Skeleton} from "@nextui-org/react";
 
 import "../css/page.css"
 import 'react-toastify/dist/ReactToastify.css';
@@ -124,7 +124,13 @@ export default function QuotesGenerator() {
                 isOpen={isOpen} 
                 placement="center"
                 scrollBehavior="inside"
-                onOpenChange={onOpenChange}
+                onOpenChange={() =>  {
+                    const audioPlayerTwo = audioElementTwo.current;
+                    if (audioPlayerTwo) {
+                        audioPlayerTwo.pause();
+                    }
+                    onOpenChange()
+                }}
                 motionProps={{
                     variants: {
                         enter: {
@@ -153,15 +159,24 @@ export default function QuotesGenerator() {
                         <ModalBody>
                             <div className="wrapper-result space-y-6">
                             {
-                                quotesData?.map((element, index) => {
-                                    return (
-                                        <div onClick={() => handleCopyToClipboard(`'${element?.quote}' — ${element?.author}`)} key={index} className="box-item-result py-5 px-2 border border-gray-300/50 rounded-[6px] text-white font-bold bg-quote cursor-pointer">
-                                            <h2>
-                                            `&quot;`{element?.quote}`&quot;` — <span className="stranger-things-font-bold">{element?.author}</span>
-                                            </h2>
-                                        </div>
-                                    )
-                                })
+                                loading ?
+                                    Array.from({ length: counterQuote }, (_, index) => index)?.map((index) => {
+                                        return (
+                                            <Skeleton key={index} className="w-full rounded-lg">  
+                                                <div className="w-full h-[5rem] rounded-lg bg-default-300"></div>
+                                            </Skeleton>
+                                        )
+                                    })
+                                :
+                                    quotesData?.map((element, index) => {
+                                        return (
+                                            <div onClick={() => handleCopyToClipboard(`${element?.quote}' — ${element?.author}`)} key={index} className="box-item-result py-5 px-2 border border-gray-300/50 rounded-[6px] text-white font-bold bg-quote cursor-pointer">
+                                                <h2>
+                                                &quot;{element?.quote}&quot; — <span className="stranger-things-font-bold">{element?.author}</span>
+                                                </h2>
+                                            </div>
+                                        )
+                                    })
                             }
                             </div>
                         </ModalBody>
